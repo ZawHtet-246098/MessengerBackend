@@ -85,4 +85,17 @@ const signup = async (req, res) => {
   });
 };
 
-module.exports = { login, signup };
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await UserSchema.find().select([
+      "email",
+      "firstName",
+      "lastName",
+      "_id",
+    ]);
+
+    return res.json(users);
+  } catch (error) { }
+};
+
+module.exports = { login, signup, getAllUsers };
